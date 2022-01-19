@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to the #{title}
+  a(href="/sign-in") Sign In
+  br
+  a(href="/sign-up") Sign Up
+  if currentUser
+    p You are logged in and a pimp
+    a(href="/log-out")
+    if !currentUser.membership
+      form(action="", method="post") 
+        label(for="secret")
+        input(type="text" name="secret" id="secret" placeholder="Enter the secret")
+        br
+        button(type="submit") Only if you are a T.I.P. 
+  else
+    p You are less than dirt
+  if currentUser.membership
+    p You can now post your deepest darkest thoughts
+    a(href="/message-form") Message form
+    br
+    if !currentUser.admin
+    a(href="/admin-upgrade") The ultimate test
+  for message in messages
+    h1= message.title
+    p= message.message
+    if currentUser.membership
+      p= message.user
+      p= message.timestamp
+    if currentUser.admin
+      a(href=message.delete) Delete Message

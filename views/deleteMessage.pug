@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1= title
+  h1= message.title
+  p= message.message
+  p= message.user
+  p= message.timestamp
+  form(action="", method="post") 
+    button(type="submit") Delete

@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1= title
+  if currentUser.membership
+    form(action="", method="post") 
+      label(for="title") Title: 
+      input(type="text", name="title" id="title" placeholder="Title" required) 
+      br
+      label(for="message") Message: 
+      textarea(name="message" id="message" required) 
+      br
+      button(type="submit") Publish
+  br
+  a(href="/") Home

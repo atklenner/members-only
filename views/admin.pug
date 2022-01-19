@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1= title
+  if currentUser.membership
+    form(action="", method="post") 
+      label(for="secret") Secret: 
+      input(type="text" name="secret" id="secret" required) 
+      br
+      button(type="submit") Prove Your Worth
+  br
+  a(href="/") Home
