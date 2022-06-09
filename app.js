@@ -1,3 +1,4 @@
+require("dotenv").config();
 var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
@@ -11,10 +12,12 @@ const User = require("./models/user");
 const bcrypt = require("bcryptjs");
 const compression = require("compression");
 const helmet = require("helmet");
+const DATABASE_URL = require(process.env.DATABASE_URL);
 
-const mongoDb =
-  "mongodb+srv://m001-student:m001-mongodb-basics@sandbox.gt9sj.mongodb.net/members?retryWrites=true&w=majority";
-mongoose.connect(mongoDb, { useUnifiedTopology: true, useNewUrlParser: true });
+mongoose.connect(DATABASE_URL, {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+});
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "mongo connection error"));
 
